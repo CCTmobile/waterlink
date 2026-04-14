@@ -136,6 +136,8 @@
         return false;
     });
 
+    // Global WhatsApp float widget
+    var waWidget = '<a href="https://wa.me/27784693135" class="whatsapp-float" target="_blank" aria-label="Chat with us on WhatsApp"><i class="fab fa-whatsapp"></i></a>';
+    $('body').append(waWidget);
 
 })(jQuery);
-
