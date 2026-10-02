@@ -1,0 +1,10 @@
+{
+  "name": "waterlinks-portal",
+  "version": "1.0.0",
+  "private": true,
+  "description": "WaterLinks Borehole Services Website and Studio Portal",
+  "scripts": {
+    "build": "cd invoice && npm install && npm run build",
+    "dev": "cd invoice && npm run dev"
+  }
+}

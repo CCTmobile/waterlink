@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+:root {
+  --background: #070f1e;
+  --foreground: #0f172a;
+}
+
+/* Custom font utilities */
+.font-display {
+  font-family: var(--font-outfit), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.font-sans {
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.font-mono {
+  font-family: var(--font-mono), "JetBrains Mono", "SF Mono", Consolas, monospace;
+}
+
+.font-signature {
+  font-family: 'Brush Script MT', 'Segoe Script', 'Dancing Script', 'Caveat', cursive, serif;
+}
+
+/* Subtle hydrological grid for screen background */
+.hydrological-grid {
+  background-color: #040d1a;
+  background-image: 
+    radial-gradient(rgba(14, 165, 233, 0.15) 1px, transparent 1px),
+    linear-gradient(to right, rgba(3, 105, 161, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(3, 105, 161, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px, 120px 120px, 120px 120px;
+}
+
+/* Hide scrollbars while keeping scrolling functional */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide number input arrows cleanly */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Luxury Gold & Brushed Metallic Styles */
+.gold-brass-plate {
+  background: linear-gradient(135deg, #f7e4af 0%, #dfb76c 28%, #fff3d1 50%, #c7953c 72%, #dfb76c 100%);
+  box-shadow: 
+    inset 0 1px 2px rgba(255, 255, 255, 0.8),
+    inset 0 -1px 2px rgba(90, 60, 15, 0.6),
+    0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.gold-text-metallic {
+  background: linear-gradient(180deg, #fff7de 0%, #f4d081 45%, #c8953c 85%, #dfb76c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-frame-border {
+  border-color: #b88c2f;
+}
+
+.gold-glow {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
+}
+
+.wax-seal-3d {
+  background: radial-gradient(circle at 35% 35%, #18488e 0%, #0a295c 45%, #051636 85%);
+  box-shadow: 
+    inset 0 3px 5px rgba(255, 255, 255, 0.4),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.7),
+    0 8px 24px rgba(0, 0, 0, 0.6),
+    0 0 16px rgba(184, 140, 47, 0.4);
+}
+
+/* Print Engine Fidelity Styles */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0 !important;
+  }
+
+  html, body {
+    background: #061838 !important;
+    background-image: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    overflow: hidden !important;
+  }
+
+  .print-screen-only {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  /* Strip interactive input borders during print */
+  input,
+  textarea,
+  select {
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    resize: none !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    line-height: inherit !important;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none !important;
+  }
+
+  .cert-print-exact {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    min-height: 296mm !important;
+    max-height: 297mm !important;
+    padding: 12mm 14mm !important;
+  }
+}

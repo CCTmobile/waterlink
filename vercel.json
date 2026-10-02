@@ -1,0 +1,29 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/invoice",
+      "destination": "/invoice/out/index.html"
+    },
+    {
+      "source": "/invoice/",
+      "destination": "/invoice/out/index.html"
+    },
+    {
+      "source": "/invoice/:path*",
+      "destination": "/invoice/out/:path*"
+    },
+    {
+      "source": "/_next/:path*",
+      "destination": "/invoice/out/_next/:path*"
+    },
+    {
+      "source": "/certificate",
+      "destination": "/invoice/out/index.html"
+    },
+    {
+      "source": "/certificate/",
+      "destination": "/invoice/out/index.html"
+    }
+  ]
+}
