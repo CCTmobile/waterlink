@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
 import {
   Droplets,
   Printer,
@@ -111,6 +111,8 @@ interface DocumentState {
   certGps: string;
   certDateDrilled: string;
   certDateTested: string;
+  certDateIssue: string;
+  certDateIssueLabel?: string;
   certDepth: string;
   certStaticWaterLevel: string;
   certDynamicWaterLevel: string;
@@ -123,6 +125,7 @@ interface DocumentState {
   certControlBox: string;
   certPipingSpec: string;
   certDrilledBy: string;
+  certDrilledByLabel?: string;
   certDrillerDesignation: string;
   certDrillerSignature: string;
   certAuthorizerName: string;
@@ -133,6 +136,8 @@ interface DocumentState {
 /* ────────────────────────────────────────────────────────────────
    Presets & Sample Data for WaterLinks Borehole Services
    ──────────────────────────────────────────────────────────────── */
+
+const getTodayDateString = () => new Date().toISOString().split("T")[0];
 
 const WATERLINKS_BASE = {
   companyName: "WaterLinks Borehole Services",
@@ -249,6 +254,8 @@ const SAMPLE_INVOICE: DocumentState = {
   certGps: "Randburg (-26.0984° S, 28.0125° E)",
   certDateDrilled: "2026-06-02",
   certDateTested: "2026-10-09",
+  certDateIssue: getTodayDateString(),
+  certDateIssueLabel: "DATE OF ISSUE:",
   certDepth: "80",
   certStaticWaterLevel: "15",
   certDynamicWaterLevel: "38",
@@ -260,11 +267,12 @@ const SAMPLE_INVOICE: DocumentState = {
   certPumpDepth: "70",
   certControlBox: "Digital Dry-run Protection + 20A Surg",
   certPipingSpec: "32mm Class 12 HDPE Poly Pipe · 2.5mm² 4-Core Submersible Cable",
-  certDrilledBy: "Jafta Kanero",
+  certDrilledBy: "Waterlinks",
+  certDrilledByLabel: "DRILLED BY:",
   certDrillerDesignation: "Lead Drilling & Pump Specialist",
-  certDrillerSignature: "Jafta Kanero",
+  certDrillerSignature: "Waterlinks",
   certAuthorizerName: "WaterLinks Operations Desk",
-  certAuthorizerSignature: "Wata Kanero",
+  certAuthorizerSignature: "Waterlinks",
   certStatement:
     "This borehole has been developed and tested and is confirmed to be in good working condition and suitable for use. The yield is as stated above at the time of testing.",
 };
@@ -409,12 +417,14 @@ const SAMPLE_CERTIFICATE: DocumentState = {
   ...SAMPLE_INVOICE,
   mode: "certificate",
   docRef: "WL-BC-2026-089",
-  issueDate: "09/24/2026",
+  issueDate: getTodayDateString(),
   certClientName: "Mr J Kabuya",
   certAddress: "42 Equity Drive, Blairgowrie 2194, Coordinates: Randburg.",
   certGps: "Randburg (-26.0984° S, 28.0125° E)",
   certDateDrilled: "2026-06-02",
   certDateTested: "2026-10-09",
+  certDateIssue: getTodayDateString(),
+  certDateIssueLabel: "DATE OF ISSUE:",
   certDepth: "80",
   certStaticWaterLevel: "15",
   certDynamicWaterLevel: "38",
@@ -426,11 +436,12 @@ const SAMPLE_CERTIFICATE: DocumentState = {
   certPumpDepth: "70",
   certControlBox: "Digital Dry-run Protection + 20A Surg",
   certPipingSpec: "32mm Class 12 HDPE Poly Pipe · 2.5mm² 4-Core Submersible Cable",
-  certDrilledBy: "Jafta Kanero",
+  certDrilledBy: "Waterlinks",
+  certDrilledByLabel: "DRILLED BY:",
   certDrillerDesignation: "Lead Drilling & Pump Specialist",
-  certDrillerSignature: "Jafta Kanero",
+  certDrillerSignature: "Waterlinks",
   certAuthorizerName: "WaterLinks Operations Desk",
-  certAuthorizerSignature: "Wata Kanero",
+  certAuthorizerSignature: "Waterlinks",
   certStatement:
     "This borehole has been developed and tested and is confirmed to be in good working condition and suitable for use. The yield is as stated above at the time of testing.",
 };
@@ -443,6 +454,21 @@ const uid = () => Math.random().toString(36).slice(2, 9);
 
 export default function DocumentStudio() {
   const [data, setData] = useState<DocumentState>(SAMPLE_CERTIFICATE);
+
+  /* ── Dynamic Client-side Initialization ──────────────────────── */
+  useEffect(() => {
+    const today = getTodayDateString();
+    setData((prev) => {
+      if (prev.mode === "certificate") {
+        return {
+          ...prev,
+          certDateIssue: prev.certDateIssue || today,
+          issueDate: prev.issueDate && prev.issueDate !== "09/24/2026" ? prev.issueDate : today,
+        };
+      }
+      return prev;
+    });
+  }, []);
 
   /* ── Currency Formatter ──────────────────────────────────────── */
   const formatCurrency = useCallback(
@@ -508,10 +534,17 @@ export default function DocumentStudio() {
         docRef: prev.docRef.startsWith("WL-REP") ? prev.docRef : "WL-REP-INS-2026-058",
       }));
     } else if (newMode === "certificate") {
+      const today = getTodayDateString();
       setData((prev) => ({
         ...prev,
         mode: "certificate",
         docRef: prev.docRef.startsWith("WL-BC") ? prev.docRef : "WL-BC-2026-089",
+        certDrilledBy: prev.certDrilledBy || "Waterlinks",
+        certDrillerSignature: prev.certDrillerSignature || prev.certDrilledBy || "Waterlinks",
+        certDrilledByLabel: prev.certDrilledByLabel || "DRILLED BY:",
+        certDateIssueLabel: prev.certDateIssueLabel || "DATE OF ISSUE:",
+        certDateIssue: prev.certDateIssue || today,
+        issueDate: prev.certDateIssue || prev.issueDate || today,
       }));
     }
   };
@@ -566,13 +599,23 @@ export default function DocumentStudio() {
 
   const handleReset = () => {
     if (data.mode === "certificate") {
+      const today = getTodayDateString();
       setData((prev) => ({
         ...prev,
         certClientName: "",
         certAddress: "",
         certGps: "",
-        certDateDrilled: new Date().toISOString().split("T")[0],
-        certDateTested: new Date().toISOString().split("T")[0],
+        certDateDrilled: today,
+        certDateTested: today,
+        certDateIssue: today,
+        issueDate: today,
+        certDrilledBy: "Waterlinks",
+        certDrilledByLabel: "DRILLED BY:",
+        certDateIssueLabel: "DATE OF ISSUE:",
+        certDrillerDesignation: "Lead Drilling & Pump Specialist",
+        certDrillerSignature: "Waterlinks",
+        certAuthorizerName: "WaterLinks Operations Desk",
+        certAuthorizerSignature: "Waterlinks",
         certDepth: "0",
         certStaticWaterLevel: "0",
         certDynamicWaterLevel: "0",
@@ -620,10 +663,20 @@ export default function DocumentStudio() {
   };
 
   const handleLoadSample = () => {
+    const today = getTodayDateString();
     if (data.mode === "invoice") setData(SAMPLE_INVOICE);
     else if (data.mode === "quotation") setData(SAMPLE_QUOTATION);
     else if (data.mode === "report") setData(SAMPLE_REPORT);
-    else setData(SAMPLE_CERTIFICATE);
+    else {
+      setData({
+        ...SAMPLE_CERTIFICATE,
+        issueDate: today,
+        certDateIssue: today,
+        certDrilledBy: "Waterlinks",
+        certDrillerSignature: "Waterlinks",
+        certAuthorizerSignature: "Waterlinks",
+      });
+    }
   };
 
   const handlePrint = () => {
@@ -888,12 +941,15 @@ export default function DocumentStudio() {
                       />
                     </div>
                     <div className="flex items-center sm:justify-end gap-1.5 font-mono">
-                      <span className="font-bold text-[9.5px] uppercase text-[#33220a]">ISSUE DATE:</span>
+                      <span className="font-bold text-[8.5px] uppercase text-[#33220a]">ISSUE DATE:</span>
                       <input
-                        type="text"
-                        value={data.issueDate}
-                        onChange={(e) => updateField("issueDate", e.target.value)}
-                        className="w-28 text-right font-mono font-bold text-[11px] text-[#061a35] outline-none bg-transparent"
+                        type="date"
+                        value={data.certDateIssue || data.issueDate}
+                        onChange={(e) => {
+                          updateField("certDateIssue", e.target.value);
+                          updateField("issueDate", e.target.value);
+                        }}
+                        className="w-28 text-right font-mono font-bold text-[10px] text-[#061a35] outline-none bg-transparent cursor-pointer [color-scheme:light] p-0"
                       />
                     </div>
                   </div>
@@ -1203,27 +1259,50 @@ export default function DocumentStudio() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 items-end pt-3 mt-2 border-t border-[#dfb76c]/40">
               {/* Drilled By & Signature */}
               <div className="text-left space-y-1">
-                <span className="text-[10px] font-bold text-[#f5d77f] uppercase tracking-wider block">
-                  DRILLED BY:
-                </span>
-                <div className="h-10 flex items-end">
-                  <span className="font-signature text-3xl sm:text-4xl text-[#38bdf8] select-none drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]">
-                    {data.certDrillerSignature || "Jafta Kanero"}
-                  </span>
+                <input
+                  type="text"
+                  value={data.certDrilledByLabel ?? "DRILLED BY:"}
+                  onChange={(e) => updateField("certDrilledByLabel", e.target.value)}
+                  className="text-[9px] font-bold text-[#f5d77f] uppercase tracking-wider block bg-transparent outline-none w-full"
+                  placeholder="DRILLED BY:"
+                  title="Click to edit label"
+                />
+                <div className="min-h-[38px] flex items-end pb-0.5 overflow-visible">
+                  <input
+                    type="text"
+                    value={data.certDrillerSignature || data.certDrilledBy || "Waterlinks"}
+                    onChange={(e) => updateField("certDrillerSignature", e.target.value)}
+                    className="font-signature text-xl sm:text-2xl text-[#38bdf8] outline-none bg-transparent w-full drop-shadow-[0_0_8px_rgba(56,189,248,0.4)] whitespace-nowrap"
+                    title="Click to edit signature"
+                    placeholder="Signature"
+                  />
                 </div>
                 <div className="border-b-2 border-[#dfb76c] w-full mb-1"></div>
                 <input
                   type="text"
                   value={data.certDrilledBy}
-                  onChange={(e) => updateField("certDrilledBy", e.target.value)}
-                  className="font-bold text-xs text-white outline-none w-full bg-transparent"
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    updateField("certDrilledBy", val);
+                    if (!data.certDrillerSignature || data.certDrillerSignature === data.certDrilledBy || data.certDrillerSignature === "Waterlinks" || data.certDrillerSignature === "Jafta Kanero") {
+                      updateField("certDrillerSignature", val);
+                    }
+                  }}
+                  className="font-bold text-[11px] text-white outline-none w-full bg-transparent"
+                  placeholder="Waterlinks"
                 />
-                <p className="text-[9.5px] text-[#dfb76c]">{data.certDrillerDesignation}</p>
+                <input
+                  type="text"
+                  value={data.certDrillerDesignation}
+                  onChange={(e) => updateField("certDrillerDesignation", e.target.value)}
+                  className="text-[8.5px] text-[#dfb76c] outline-none bg-transparent w-full block"
+                  placeholder="Lead Drilling & Pump Specialist"
+                />
               </div>
 
               {/* 3D Wax Seal / Royal Blue Medallion */}
               <div className="flex flex-col items-center justify-center">
-                <div className="relative h-26 w-26 rounded-full border-4 border-[#dfb76c] wax-seal-3d flex items-center justify-center p-1 shadow-2xl rotate-[-2deg] print:rotate-0">
+                <div className="relative h-24 w-24 rounded-full border-4 border-[#dfb76c] wax-seal-3d flex items-center justify-center p-1 shadow-2xl rotate-[-2deg] print:rotate-0">
                   <div className="h-full w-full rounded-full border border-dashed border-[#f5d77f]/80 flex flex-col items-center justify-center text-center p-1">
                     <span className="text-[6.5px] font-black uppercase text-[#f5d77f] tracking-widest">
                       WATERLINKS
@@ -1252,26 +1331,40 @@ export default function DocumentStudio() {
 
               {/* Date & Authorization with Cursive Counter-Signature */}
               <div className="text-right space-y-1">
-                <span className="text-[10px] font-bold text-[#f5d77f] uppercase tracking-wider block">
-                  DATE OF ISSUE:
-                </span>
-                <div className="h-10 flex items-end justify-end">
-                  <span className="font-signature text-3xl sm:text-4xl text-[#38bdf8] select-none drop-shadow-[0_0_8px_rgba(56,189,248,0.4)]">
-                    {data.certAuthorizerSignature || "Wata Kanero"}
-                  </span>
-                </div>
-                <div className="border-b-2 border-[#dfb76c] w-full mb-1"></div>
-                <div className="text-right">
+                {/* Subtle top spacer to match DRILLED BY: label baseline */}
+                <div className="h-[14px]"></div>
+                <div className="min-h-[38px] flex items-end justify-end pb-0.5 overflow-visible">
                   <input
                     type="text"
-                    value={data.certDateTested}
-                    onChange={(e) => updateField("certDateTested", e.target.value)}
-                    className="font-mono text-xs font-bold text-white text-right outline-none bg-transparent"
+                    value={data.certAuthorizerSignature || "Waterlinks"}
+                    onChange={(e) => updateField("certAuthorizerSignature", e.target.value)}
+                    className="font-signature text-xl sm:text-2xl text-[#38bdf8] outline-none bg-transparent text-right w-full drop-shadow-[0_0_8px_rgba(56,189,248,0.4)] whitespace-nowrap"
+                    title="Click to edit counter-signature"
+                    placeholder="Signature"
                   />
-                  <span className="text-[9.5px] font-bold text-[#f5d77f] uppercase block">
-                    WATERLINKS OPERATIONS DESK
-                  </span>
-                  <span className="text-[9px] font-mono text-slate-300">REG: {data.companyReg}</span>
+                </div>
+                <div className="border-b-2 border-[#dfb76c] w-full mb-1"></div>
+                <div className="text-right space-y-0.5">
+                  <div className="flex justify-end items-center">
+                    <input
+                      type="date"
+                      value={data.certDateIssue || data.issueDate}
+                      onChange={(e) => {
+                        updateField("certDateIssue", e.target.value);
+                        updateField("issueDate", e.target.value);
+                      }}
+                      className="font-mono text-[10.5px] font-bold text-white text-right outline-none bg-transparent cursor-pointer [color-scheme:dark] max-w-[130px] p-0"
+                      title="Select date of issue"
+                    />
+                  </div>
+                  <input
+                    type="text"
+                    value={data.certAuthorizerName || "WATERLINKS OPERATIONS DESK"}
+                    onChange={(e) => updateField("certAuthorizerName", e.target.value)}
+                    className="text-[8.5px] font-bold text-[#f5d77f] uppercase block text-right outline-none bg-transparent w-full"
+                    placeholder="WATERLINKS OPERATIONS DESK"
+                  />
+                  <span className="text-[8px] font-mono text-slate-300 block">REG: {data.companyReg}</span>
                 </div>
               </div>
             </div>
