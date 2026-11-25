@@ -3,25 +3,28 @@
 
 <head>
   <meta charset="utf-8" />
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
   <title>Borehole Drilling & JoJo Tanks in Gauteng | WaterLinks Drilling</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
     content="Expert borehole services, JoJo tank installation, and water purification services in Gauteng. WaterLinks Borehole Services ensures a reliable water supply for homes and businesses. Contact us for a quote." />
   <meta name="keywords"
     content="borehole drilling Gauteng, JoJo tank installation, water purification Gauteng, borehole services, water well drilling, water pump installation, borehole maintenance, water solutions Gauteng, WaterLinks Borehole Services" />
+  <link rel="preload" as="image" href="img/carousel-farm.webp" type="image/webp" fetchpriority="high" />
+
   <!-- Google Web Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" />
   <link
     href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
-    rel="stylesheet" />
+    rel="stylesheet" media="print" onload="this.media='all'" />
 
   <!-- Icon Font Stylesheet -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
 
   <!-- Libraries Stylesheet -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link href="lib/animate/animate.min.css" rel="stylesheet" />
   <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
@@ -82,7 +85,7 @@
     <div class="container px-0">
       <nav class="navbar navbar-expand-lg navbar-dark bg-white py-3 px-4">
         <a href="index.html" class="navbar-brand p-0">
-          <img src="img/logo.svg" alt="WaterLinks Borehole Services Logo" style="height: 40px; width: auto" />
+          <img src="img/logo.svg" alt="WaterLinks Borehole Services Logo" style="height: 40px; width: auto"  width="3879" height="892"/>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
           aria-label="Toggle navigation">
@@ -190,78 +193,53 @@
   </div>
   <!-- Modal Search End -->
 
-  <!-- Carousel Start -->
-  <div class="header-carousel owl-carousel">
-    <div class="header-carousel-item">
-      <div class="header-carousel-item-img-1">
-        <img src="img/carousel-1.jpg" class="img-fluid w-100" alt="Professional borehole services in Gauteng" />
+  <!-- Scroll-driven camera hero Start -->
+  <section class="wl-stage" id="wl-stage"
+    aria-label="Scroll to move the camera from the Gauteng site to the drill rig, then to the water system">
+    <div class="wl-stage__pin">
+      <div class="wl-layer wl-layer--site" data-layer="site">
+        <picture>
+          <source srcset="img/carousel-farm.webp" type="image/webp" />
+          <img src="img/carousel-farm.jpg" width="1920" height="1080" alt="" aria-hidden="true" fetchpriority="high" />
+        </picture>
       </div>
-      <div class="carousel-caption">
-        <div class="carousel-caption-inner text-start p-3">
-          <h2 class="display-1 text-capitalize text-white mb-4 fadeInUp animate__animated" data-animation="fadeInUp"
-            data-delay="1.3s" style="animation-delay: 1.3s">
-            Reliable Water Solutions for Gauteng
-          </h2>
-          <p class="mb-5 fs-5 fadeInUp animate__animated" data-animation="fadeInUp" data-delay="1.5s"
-            style="animation-delay: 1.5s">
-            WaterLinks Borehole Services provides comprehensive water solutions
-            in Gauteng. We offer expert borehole services, JoJo
-            tank installation, and water purification systems to ensure a
-            clean and reliable water supply for your home or business.
-          </p>
-          <a class="btn btn-primary rounded-pill py-3 px-5 mb-4 me-4 fadeInUp animate__animated"
-            data-animation="fadeInUp" data-delay="1.5s" style="animation-delay: 1.7s" href="contact.html"
-            title="Contact us for a consultation">Contact Us</a>
-          <a class="btn btn-dark rounded-pill py-3 px-5 mb-4 fadeInUp animate__animated" data-animation="fadeInUp"
-            data-delay="1.5s" style="animation-delay: 1.7s" href="about.html" title="Learn more about our company">Learn
-            More</a>
+      <div class="wl-layer wl-layer--rig" data-layer="rig">
+        <picture>
+          <source srcset="img/carousel-2.webp" type="image/webp" />
+          <img src="img/carousel-2.jpg" width="1920" height="1080" alt="" aria-hidden="true" />
+        </picture>
+      </div>
+      <div class="wl-layer wl-layer--water" data-layer="water">
+        <picture>
+          <source srcset="img/carousel-3.webp" type="image/webp" />
+          <img src="img/carousel-3.jpg" width="1920" height="1080" alt="" aria-hidden="true" />
+        </picture>
+        <div class="wl-stage__apron" aria-hidden="true"></div>
+      </div>
+
+      <div class="wl-stage__veil" aria-hidden="true"></div>
+
+      <div class="wl-stage__copy">
+        <p class="wl-stage__eyebrow" data-stage-label>01 / SURVEY · GAUTENG</p>
+        <h1 class="wl-stage__title" data-stage-title>We find the water.</h1>
+        <p class="wl-stage__lede" data-stage-lede>Geophysical surveys and yield testing locate a dependable aquifer
+          before a single metre is drilled.</p>
+        <div class="wl-stage__actions">
+          <a class="btn btn-primary py-3 px-4" href="contact.html" title="Request a free borehole quote">Get a free
+            quote</a>
+          <a class="btn btn-outline-light py-3 px-4" href="service.html" title="See our borehole and water services">See
+            our services</a>
         </div>
       </div>
+
+      <div class="wl-stage__hud" aria-hidden="true">
+        <span data-stage-cam>CAM 01 / SURVEY</span>
+        <span class="wl-stage__track"><span></span></span>
+      </div>
+      <div class="wl-stage__cue" aria-hidden="true">Scroll to move the camera <span></span></div>
     </div>
-    <div class="header-carousel-item mx-auto">
-      <div class="header-carousel-item-img-2">
-        <img src="img/carousel-2.jpg" class="img-fluid w-100" alt="An expert borehole services rig in operation" />
-      </div>
-      <div class="carousel-caption">
-        <div class="carousel-caption-inner text-center p-3">
-          <h2 class="display-1 text-capitalize text-white mb-4">
-            Borehole Services Experts
-          </h2>
-          <p class="mb-5 fs-5">
-            We are specialists in borehole services, ensuring you have access
-            to a sustainable water source. Our team uses the
-            latest techniques and equipment to provide efficient and
-            cost-effective solutions in Gauteng.
-          </p>
-          <a class="btn btn-primary rounded-pill py-3 px-5 mb-4 me-4" href="contact.html"
-            title="Request a borehole services quote">Get a Quote</a>
-          <a class="btn btn-dark rounded-pill py-3 px-5 mb-4" href="project.html" title="View our past projects">See Our
-            Work</a>
-        </div>
-      </div>
-    </div>
-    <div class="header-carousel-item">
-      <div class="header-carousel-item-img-3">
-        <img src="img/carousel-3.jpg" class="img-fluid w-100" alt="JoJo tank and water purification system setup" />
-      </div>
-      <div class="carousel-caption">
-        <div class="carousel-caption-inner text-end p-3">
-          <h2 class="display-1 text-capitalize text-white mb-4">
-            JoJo Tanks & Purification
-          </h2>
-          <p class="mb-5 fs-5">
-            Ensure your water is safe with our purification systems and reliable storage with JoJo tank installations.
-            We offer solutions for residential and commercial applications, guaranteeing clean and safe water.
-          </p>
-          <a class="btn btn-primary rounded-pill py-3 px-5 mb-4 me-4" href="service.html"
-            title="Discover our water purification services">Learn More</a>
-          <a class="btn btn-dark rounded-pill py-3 px-5 mb-4" href="contact.html"
-            title="Contact us for services">Contact Us</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Carousel End -->
+  </section>
+  <!-- Scroll-driven camera hero End -->
 
 
   <!-- About Start -->
@@ -271,9 +249,9 @@
         <div class="col-lg-6 col-xl-5 wow fadeInLeft" data-wow-delay="0.1s">
           <div class="about-img">
             <img src="img/about-3.png" class="img-fluid w-100 rounded-top bg-white"
-              alt="WaterLinks Borehole Services logo with 3-year works and water yield guarantee seals" />
+              alt="WaterLinks Borehole Services logo with 3-year works and water yield guarantee seals"  width="600" height="300"/>
             <img src="img/about-2.jpg" class="img-fluid w-100 rounded-bottom"
-              alt="Professional borehole services site in a residential area in Gauteng" />
+              alt="Professional borehole services site in a residential area in Gauteng"  width="600" height="500"/>
           </div>
         </div>
         <div class="col-lg-6 col-xl-7 wow fadeInRight" data-wow-delay="0.3s">
@@ -317,14 +295,14 @@
             </div>
             <div class="col-xl-7 mb-5">
               <div class="about-customer d-flex position-relative">
-                <img src="img/customer-img-1.jpg" class="img-fluid btn-xl-square position-absolute"
-                  style="left: 0; top: 0" alt="A satisfied customer of WaterLinks Drilling" />
-                <img src="img/customer-img-2.jpg" class="img-fluid btn-xl-square position-absolute"
-                  style="left: 45px; top: 0" alt="Another happy client of our borehole services" />
-                <img src="img/customer-img-3.jpg" class="img-fluid btn-xl-square position-absolute"
-                  style="left: 90px; top: 0" alt="Happy customer testimonial photo" />
-                <img src="img/customer-img-1.jpg" class="img-fluid btn-xl-square position-absolute"
-                  style="left: 135px; top: 0" alt="A smiling customer" />
+                <img src="img/customer-1-square.webp" class="img-fluid btn-xl-square position-absolute"
+                  style="left: 0; top: 0" alt="A satisfied customer of WaterLinks Drilling"  width="300" height="300"/>
+                <img src="img/customer-2-square.webp" class="img-fluid btn-xl-square position-absolute"
+                  style="left: 45px; top: 0" alt="Another happy client of our borehole services"  width="300" height="300"/>
+                <img src="img/customer-3-square.webp" class="img-fluid btn-xl-square position-absolute"
+                  style="left: 90px; top: 0" alt="Happy customer testimonial photo"  width="300" height="300"/>
+                <img src="img/customer-1-square.webp" class="img-fluid btn-xl-square position-absolute"
+                  style="left: 135px; top: 0" alt="A smiling customer"  width="300" height="300"/>
                 <div class="position-absolute text-dark" style="left: 220px; top: 10px">
                   <p class="mb-0 fw-bold">Serving Hundreds of Satisfied Customers</p>
                   <p class="mb-0">in Gauteng</p>
@@ -452,7 +430,7 @@
         <div class="project-item h-100 wow fadeInUp" data-wow-delay="0.1s">
           <div class="project-img">
             <img src="img/projects-borehole.jpg" class="img-fluid w-100 rounded"
-              alt="Residential borehole installation project in Gauteng" />
+              alt="Residential borehole installation project in Gauteng"  width="600" height="400"/>
           </div>
           <div class="project-content bg-light rounded p-4">
             <div class="project-content-inner">
@@ -473,7 +451,7 @@
         <div class="project-item h-100 wow fadeInUp" data-wow-delay="0.3s">
           <div class="project-img">
             <img src="img/projects-water-purification.jpg" class="img-fluid w-100 rounded"
-              alt="Commercial water purification system for a restaurant" />
+              alt="Commercial water purification system for a restaurant"  width="600" height="400"/>
           </div>
           <div class="project-content bg-light rounded p-4">
             <div class="project-content-inner">
@@ -492,7 +470,7 @@
         <div class="project-item h-100">
           <div class="project-img">
             <img src="img/projects-jojo-tanks.jpg" class="img-fluid w-100 rounded"
-              alt="JoJo tank water storage solution for a rural community" />
+              alt="JoJo tank water storage solution for a rural community"  width="600" height="400"/>
           </div>
           <div class="project-content bg-light rounded p-4">
             <div class="project-content-inner">
@@ -536,7 +514,7 @@
             </div>
             <div class="project-img">
               <img src="img/blog-1.jpg" class="img-fluid w-100 rounded"
-                alt="A sample of water being tested for quality from a borehole" />
+                alt="A sample of water being tested for quality from a borehole"  width="500" height="400"/>
               <div class="blog-plus-icon">
                 <a href="img/blog-1.jpg" data-lightbox="blog-1" class="btn btn-primary btn-md-square rounded-pill"
                   aria-label="View larger image"><i class="fas fa-plus fa-1x"></i></a>
@@ -566,7 +544,7 @@
             </div>
             <div class="project-img">
               <img src="img/blog-2.jpg" class="img-fluid w-100 rounded"
-                alt="A modern water purification system installed in a home kitchen" />
+                alt="A modern water purification system installed in a home kitchen"  width="500" height="400"/>
               <div class="blog-plus-icon">
                 <a href="img/blog-2.jpg" data-lightbox="blog-2" class="btn btn-primary btn-md-square rounded-pill"
                   aria-label="View larger image"><i class="fas fa-plus fa-1x"></i></a>
@@ -595,7 +573,7 @@
             </div>
             <div class="project-img">
               <img src="img/blog-3.jpg" class="img-fluid w-100 rounded"
-                alt="A row of JoJo tanks used for water storage on a farm" />
+                alt="A row of JoJo tanks used for water storage on a farm"  width="500" height="400"/>
               <div class="blog-plus-icon">
                 <a href="img/blog-3.jpg" data-lightbox="blog-3" class="btn btn-primary btn-md-square rounded-pill"
                   aria-label="View larger image"><i class="fas fa-plus fa-1x"></i></a>
@@ -660,7 +638,7 @@
                         height: 80px;
                         border: 1px solid;
                         border-color: var(--bs-primary);
-                      " alt="Photo of Thandiwe Mthembu, a satisfied customer from Centurion" />
+                      " alt="Photo of Thandiwe Mthembu, a satisfied customer from Centurion"  width="100" height="100"/>
                 </div>
               </div>
             </div>
@@ -688,7 +666,7 @@
                         height: 80px;
                         border: 1px solid;
                         border-color: var(--bs-primary);
-                      " alt="Photo of Pieter van der Merwe, a happy client from Randburg" />
+                      " alt="Photo of Pieter van der Merwe, a happy client from Randburg"  width="100" height="100"/>
                 </div>
               </div>
             </div>
@@ -717,7 +695,7 @@
                         height: 80px;
                         border: 1px solid;
                         border-color: var(--bs-primary);
-                      " alt="Photo of Bongiwe Nkosi, a satisfied business client from Sandton" />
+                      " alt="Photo of Bongiwe Nkosi, a satisfied business client from Sandton"  width="100" height="100"/>
                 </div>
               </div>
             </div>
@@ -823,7 +801,7 @@
         <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.3s">
           <div class="faq-img RotateMoveRight rounded">
             <img src="img/faq-img.jpg" class="img-fluid rounded w-100"
-              alt="A smiling WaterLinks Drilling team member ready to answer customer questions" />
+              alt="A smiling WaterLinks Drilling team member ready to answer customer questions"  width="500" height="650"/>
             <a class="faq-btn btn btn-primary rounded-pill text-white py-3 px-5" href="contact.html"
               title="Contact us for more information">Contact Us for More Information
               <i class="fas fa-arrow-right ms-2"></i></a>
@@ -1016,7 +994,7 @@
   <!-- Copyright End -->
 
   <!-- Back to Top -->
-  <a href="#" class="btn btn-primary btn-lg-square back-to-top"><i class="fa fa-arrow-up"></i></a>
+  <a href="#" class="btn btn-primary btn-lg-square back-to-top" aria-label="Back to top"><i class="fa fa-arrow-up"></i></a>
 
   <!-- JavaScript Libraries -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -1032,15 +1010,17 @@
   <script src="js/main.js"></script>
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">
-    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-    (function () {
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart;
+    var loadTawk = function () {
+      Tawk_LoadStart = new Date();
       var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
       s1.async = true;
       s1.src = 'https://embed.tawk.to/69df8c99eaf1921c369c4c00/default';
       s1.charset = 'UTF-8';
-      s1.setAttribute('crossorigin', '*');
       s0.parentNode.insertBefore(s1, s0);
-    })();
+    };
+    if ('requestIdleCallback' in window) requestIdleCallback(loadTawk, { timeout: 4000 });
+    else window.addEventListener('load', function () { setTimeout(loadTawk, 2000); }, { once: true });
   </script>
   <!--End of Tawk.to Script-->
 </body>
